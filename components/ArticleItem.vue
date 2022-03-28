@@ -3,6 +3,7 @@
          @click="openArticle(article.id)"
          :title="article.title | capitalFirstLetter"
     >
+        <div style="color: red;">{{article.id}}</div>
         <div class="article-item__image-container">
             <div class="article-item__image-outer">
                 <img class="article-item__image" src="~/assets/img/tmp.jpeg">
@@ -49,10 +50,8 @@
                 console.log('edit article');
                 this.$router.push({name: 'post-id', params: { id: articleId, isEditMode: true } });
             }
-        },
-
-        created() {
         }
+
 
     }
 

@@ -12,11 +12,11 @@
         </div>
         <div v-else class="preloader-blank"></div>
 
-        <div class="pagination">
-            <div class="pagination__item"></div>
-            <div class="pagination__item">1</div>
-            <div class="pagination__item">2</div>
-        </div>
+        <the-pagination v-if="totalPages > 1"
+                        :total-pages="totalPages"
+                        :current-page="currentPage"
+                        @change="changePaginationPage"
+        ></the-pagination>
 
     </div>
 </template>
@@ -24,6 +24,7 @@
 
 <script>
     import {mapGetters} from 'vuex';
+    import paginationService from "~/services/paginationService";
 
     export default {
         data() {
@@ -33,22 +34,41 @@
         },
 
         computed: {
-            ...mapGetters(['articlesList', 'articlesListLength']),
+            ...mapGetters([
+                'articlesList',
+                'articlesListLength',
+                'totalPages',
+                'currentPage'
+            ]),
+        },
+
+        methods: {
+            changePaginationPage(newIndex) {
+                this.loadArticlesByPage(newIndex);
+            },
+
+            loadArticlesByPage(pageNumber) {
+                this.$store.dispatch('setCurrentPage', pageNumber);
+                this.isDataLoading = true;
+
+                this.$axios.get(`https://jsonplaceholder.typicode.com/posts?_embed=comments&_page=${pageNumber}&_limit=9`)
+                    .then(response => {
+                        const totalPages = paginationService.getTotalPages(response.headers['link']);
+                        this.$store.dispatch('setArticlesList', response.data);
+                        this.$store.dispatch('setTotalPages', totalPages);
+                    })
+                    .catch(e => {
+                        console.log('Ошибка загрузки статей', e);
+                    })
+                    .finally(() => {
+                        this.isDataLoading = false;
+                    });
+            }
         },
 
         mounted() {
-            this.isDataLoading = true;
-
-            this.$axios.get('https://jsonplaceholder.typicode.com/posts?_embed=comments')
-                .then(response => {
-                    this.$store.dispatch('setArticlesList', response.data)
-                })
-                .catch(e => {
-                    console.log('Ошибка загрузки статей', e);
-                })
-                .finally(() => {
-                    this.isDataLoading = false;
-                });
+            if(this.articlesListLength) return;
+            this.loadArticlesByPage(1);
         }
     }
 </script>
@@ -58,7 +78,5 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 23px;
-
     }
-
 </style>

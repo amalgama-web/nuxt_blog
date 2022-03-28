@@ -1,7 +1,11 @@
 export default {
     state() {
+        // todo разделить на модули??
         return {
             articlesList: [],
+            totalPages: 1,
+            currentPage: 1,
+
             currentArticle: null,
             currentComments: null
         }
@@ -14,6 +18,14 @@ export default {
 
         articlesListLength(state) {
             return state.articlesList.length;
+        },
+
+        totalPages(state) {
+            return state.totalPages;
+        },
+
+        currentPage(state) {
+            return state.currentPage;
         },
 
         currentArticle(state) {
@@ -48,6 +60,14 @@ export default {
                 state.currentArticle.body = payload;
             }
         },
+
+        setTotalPages(state, payload) {
+            state.totalPages = payload;
+        },
+
+        setCurrentPage(state, payload) {
+            state.currentPage = payload;
+        },
     },
 
     actions: {
@@ -63,6 +83,14 @@ export default {
 
         updateArticleText(context, payload) {
             context.commit('updateArticleText', payload);
-        }
+        },
+
+        setTotalPages(context, payload) {
+            context.commit('setTotalPages', payload);
+        },
+
+        setCurrentPage(context, payload) {
+            context.commit('setCurrentPage', payload);
+        },
     },
 }

@@ -1,3 +1,5 @@
+$purple: #FF008A;
+
 * {
     box-sizing: border-box;
 
@@ -71,7 +73,7 @@ a {
     }
 
     &:hover {
-        color: #FF008A;
+        color: $purple;
     }
 
     &:active {
@@ -87,7 +89,7 @@ a {
 }
 
 .button {
-    $buttonColor: #FF008A;
+
 
     position: relative;
     display: inline-flex;
@@ -97,7 +99,7 @@ a {
     height: 50px;
     padding: 10px 20px;
     border-radius: 5px;
-    border: 1px solid $buttonColor;
+    border: 1px solid $purple;
     outline: none;
 
     font-size: 18px;
@@ -109,7 +111,7 @@ a {
     transition: all linear 200ms;
     cursor: pointer;
 
-    background-color: $buttonColor;
+    background-color: $purple;
 
     &:link {
         color: #fff;
@@ -121,36 +123,36 @@ a {
 
     &:hover {
         color: #fff;
-        background-color: darken($buttonColor, 5%);
+        background-color: darken($purple, 5%);
     }
 
     &:active {
         color: #fff;
-        background-color: $buttonColor;
+        background-color: $purple;
     }
 
 
     &.button_invert {
         background-color: #fff;
-        color: $buttonColor;
+        color: $purple;
 
         &:link {
-            color: $buttonColor;
+            color: $purple;
         }
 
         &:visited {
-            color: $buttonColor;
+            color: $purple;
         }
 
         &:hover {
-            background-color: fade-out($buttonColor, .9);
+            background-color: fade-out($purple, .9);
 
-            color: $buttonColor;
+            color: $purple;
         }
 
         &:active {
             background-color: #fff;
-            color: $buttonColor;
+            color: $purple;
         }
     }
 
