@@ -1,12 +1,16 @@
 <template>
     <div class="l-container">
-        <div class="articles-list">
+
+        <div v-if="articlesListLength && !isDataLoading"
+             class="articles-list"
+        >
             <article-item v-for="article in articlesList"
                           :key="article.id"
                           :article="article"
             >
             </article-item>
         </div>
+        <div v-else class="preloader-blank"></div>
 
         <div class="pagination">
             <div class="pagination__item"></div>
@@ -19,7 +23,7 @@
 
 
 <script>
-    import { mapGetters } from 'vuex';
+    import {mapGetters} from 'vuex';
 
     export default {
         data() {

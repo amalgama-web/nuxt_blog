@@ -17,9 +17,7 @@
         <div class="article-item__footer">
             comments: {{ commentsCount }}
 
-            <nuxt-link :to="{name: 'Edit'}">
-                Edit
-            </nuxt-link>
+            <button @click.stop="editArticle(article.id)">Edit</button>
         </div>
     </div>
 </template>
@@ -32,9 +30,7 @@
             'article'
         ],
         data() {
-            return  {
-
-            }
+            return {}
         },
 
         computed: {
@@ -45,8 +41,13 @@
 
         methods: {
             openArticle(articleId) {
-                console.log('open aritcle with id ', articleId);
-                this.$router.push({ name: 'post-id', params: { id: articleId } });
+                console.log('open article');
+                this.$router.push({name: 'post-id', params: { id: articleId } });
+            },
+
+            editArticle(articleId) {
+                console.log('edit article');
+                this.$router.push({name: 'post-id', params: { id: articleId, isEditMode: true } });
             }
         },
 

@@ -8,12 +8,27 @@
             <div class="article-view__head">
                 {{ currentArticle.title | capitalFirstLetter }}
             </div>
-            <div class="article-view__text">
-                {{ currentArticle.body | capitalFirstLetter }}
-            </div>
-            <button class="article-view__edit">
-                Редактировать текст
-            </button>
+
+            <template v-if="!isEditFormVisible">
+
+                <div class="article-view__text">
+                    {{ currentArticle.body | capitalFirstLetter }}
+                </div>
+
+                <button class="button" @click="toggleForm">
+                    Редактировать текст
+                </button>
+
+            </template>
+
+            <form-edit-text v-else
+                            :class="{'_preloading': isArticleUpdating}"
+                            :text="currentArticle.body"
+                            @change="applyNewText($event)"
+                            @cancel="toggleForm"
+            ></form-edit-text>
+
+
         </div>
 
         <div v-else class="preloader-blank"></div>
@@ -27,11 +42,10 @@
             <div v-if="currentComments && !isCommentsDataLoading">
                 <comment-item v-for="comment in currentComments"
                               :comment="comment"
-                              :key="comment.postId"
+                              :key="comment.id"
                 ></comment-item>
             </div>
             <div v-else class="preloader-blank"></div>
-
         </div>
 
     </div>
@@ -45,6 +59,9 @@
             return {
                 isArticleDataLoading: true,
                 isCommentsDataLoading: true,
+                isArticleUpdating: false,
+
+                isEditFormVisible: false
             }
         },
 
@@ -52,9 +69,34 @@
             ...mapGetters(['currentArticle', 'currentComments', 'currentCommentsLength']),
         },
 
-        methods: {},
+        methods: {
+
+            toggleForm() {
+                this.isEditFormVisible = !this.isEditFormVisible;
+            },
+
+            applyNewText(newText) {
+
+                this.isArticleUpdating = true;
+
+                this.$axios.patch(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`, {
+                    body: newText
+                })
+                    .then(() => {
+                        this.$store.dispatch('updateArticleText', newText);
+                        this.isArticleUpdating = false;
+                        this.toggleForm();
+                    })
+                    .catch(e => {
+                        console.log('Ошибка при обновлении статьи', e)
+                    });
+
+            }
+        },
 
         mounted() {
+            if (this.$route.params.isEditMode) this.isEditFormVisible = true;
+
             this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`)
                 .then(response => {
                     this.$store.dispatch('setArticle', response.data);
@@ -84,18 +126,21 @@
             font-size: 34px;
             line-height: 46.44px;
 
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            padding-bottom: 40px;
+            margin-bottom: 50px;
             border-bottom: 1px solid #D1D1D6;
         }
 
         &__text {
+            color: rgba(60, 60, 67, 0.6);
+            font-size: 18px;
+            line-height: 30px;
             margin-bottom: 40px;
         }
     }
 
     .article-comments {
-        margin-top: 50px;
+        margin-top: 80px;
 
         &__head {
             font-size: 24px;
