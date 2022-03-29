@@ -4,7 +4,9 @@
             <li @click="prev"
                 :class="{'_disabled': isFirstPage }"
                 class="pagination__item _prev">
-                {
+                <svg class="pagination__icon">
+                    <use xlink:href="~/assets/img/sprites/symbol/svg/sprite.symbol.svg#arrow_left_icon"></use>
+                </svg>
             </li>
 
             <li v-for="item in paginationModel"
@@ -17,7 +19,9 @@
             <li @click="next"
                 :class="{'_disabled': isLastPage }"
                 class="pagination__item _next">
-                }
+                <svg class="pagination__icon _reverse">
+                    <use xlink:href="~/assets/img/sprites/symbol/svg/sprite.symbol.svg#arrow_left_icon"></use>
+                </svg>
             </li>
         </ul>
     </div>
@@ -151,6 +155,17 @@
                 &:hover {
                     border-color: #E2E2E2;
                 }
+            }
+        }
+
+        &__icon {
+            width: 9px;
+            height: 12px;
+            color: #E2E2E2;
+
+            transform-origin: center;
+            &._reverse {
+                transform: rotate(180deg);
             }
         }
     }

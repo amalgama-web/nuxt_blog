@@ -29,5 +29,6 @@
 <style lang="scss">
     .article-item_search {
         margin-bottom: 20px;
+        padding: 16px;
     }
 </style>

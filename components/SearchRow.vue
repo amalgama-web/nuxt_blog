@@ -7,7 +7,10 @@
                @keydown="onKeydown"
                placeholder="Поиск"
                class="search-row__input">
-        <div class="search-row__icon"></div>
+
+        <svg class="search-row__icon">
+            <use xlink:href="~/assets/img/sprites/symbol/svg/sprite.symbol.svg#zoom_icon"></use>
+        </svg>
 
         <div v-show="isOpen"
              class="search-row__dropdown">
@@ -108,7 +111,6 @@
                 this.$store.dispatch('search/setResult', this.responseList);
 
                 this.clearSearch();
-
             },
 
             goToArticle(articleId) {
@@ -178,21 +180,21 @@
                 border-color: #FF008A;
 
                 & + .search-row__icon {
-                    background-color: #FF008A;
+                    color: #FF008A;
                 }
             }
         }
 
         &__icon {
             position: absolute;
-            left: 8px;
+            left: 10px;
             top: 50%;
-            margin-top: -11px;
+            transform: translateY(-50%);
 
-            width: 22px;
-            height: 22px;
-            background-color: rgba(60, 60, 67, 0.6);
-            transition: all 200ms linear;
+            width: 19px;
+            height: 19px;
+            color: rgba(60, 60, 67, 0.6);
+            transition: color 200ms linear;
         }
 
         &__dropdown {
