@@ -7,7 +7,12 @@ export default {
     },
 
     getters: {
-
+        result(state) {
+            return state.searchResult;
+        },
+        str(state) {
+            return state.searchStr;
+        }
     },
 
     mutations: {

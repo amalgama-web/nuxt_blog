@@ -3,7 +3,8 @@
         <input type="text"
                v-model="searchStr"
                @input="onInput"
-               @focus="onFocus"
+               @click="onClick"
+               @keydown="onKeydown"
                placeholder="Поиск"
                class="search-row__input">
         <div class="search-row__icon"></div>
@@ -68,15 +69,9 @@
                 this.isOpen = false;
             },
 
-            onFocus() {
+            onClick() {
                 if(this.responseLength) this.isOpen = true;
             },
-
-            // onChange() {
-            //     console.log('onChange');
-            //     if (this.searchStr.length < 3) return;
-            //     this.searchRequest(this.searchStr);
-            // },
 
             onInput() {
                 clearTimeout(this.debounceTimeout);
@@ -87,6 +82,10 @@
                 this.debounceTimeout = setTimeout(() => {
                     this.searchRequest(this.searchStr);
                 }, 500);
+            },
+
+            onKeydown(e) {
+                if(e.key === 'Escape') this.closeDropdown();
             },
 
             // todo кэш для запросов
