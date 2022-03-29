@@ -17,7 +17,6 @@
                     Найдено статей: {{ responseLength }} <br>
                     <span class="link search-row__show-all"
                           @click="showAll"
-                          to="/search/"
                     >
                         Показать все
                     </span>

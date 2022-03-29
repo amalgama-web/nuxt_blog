@@ -6,11 +6,13 @@
             Совпадения в комментариях не учитываются
         </p>
 
-        <article-search-item v-for="article in searchResult"
-                             :key="article.id"
-                             :article="article"
-        >
-        </article-search-item>
+        <div v-highlight-text="searchStr">
+            <article-search-item v-for="article in searchResult"
+                                 :key="article.id"
+                                 :article="article"
+            >
+            </article-search-item>
+        </div>
     </div>
 </template>
 
@@ -30,13 +32,6 @@
                 searchResult: 'search/result'
             })
         },
-
-        methods: {},
-
-        mounted() {
-            console.log(this.searchStr);
-            console.log(this.searchResult);
-        }
     }
 </script>
 
@@ -51,5 +46,9 @@
             font-size: 14px;
             margin-bottom: 55px;
         }
+    }
+    mark {
+        background-color: #FF008A;
+        color: #fff;
     }
 </style>
