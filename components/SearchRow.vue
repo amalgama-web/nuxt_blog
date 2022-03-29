@@ -139,6 +139,14 @@
         position: relative;
         width: 309px;
 
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            width: 100%;
+        }
+
         &__input {
             display: block;
             height: 50px;
@@ -182,6 +190,14 @@
                 & + .search-row__icon {
                     color: #FF008A;
                 }
+            }
+
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                height: 36px;
             }
         }
 

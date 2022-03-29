@@ -1,0 +1,15 @@
+@mixin link-color($color, $hover-color: $color) {
+    color: $color;
+    &:link {
+        color: $color;
+    }
+    &:visited {
+        color: $color;
+    }
+    &:hover {
+        color: $hover-color;
+    }
+    &:visited {
+        color: $color;
+    }
+}

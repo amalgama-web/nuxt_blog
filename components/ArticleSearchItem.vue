@@ -30,5 +30,14 @@
     .article-item_search {
         margin-bottom: 20px;
         padding: 16px;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 </style>

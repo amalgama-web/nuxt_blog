@@ -36,56 +36,53 @@
         &__right {
             display: flex;
             align-items: center;
+
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                width: 100%;
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
         }
 
         &__posts-link {
             display: inline-flex;
             align-items: center;
-            $purple: #FF008A;
-            color: $purple;
 
             margin-left: 30px;
 
             transition: all 200ms linear;
-            &:link {
-                color: $purple;
-            }
-
-            &:visited {
-                color: $purple;
-            }
-
-            &:hover {
-                color: #000;
-            }
-
-            &:active {
-                color: $purple;
-            }
+            @include link-color($purple, #000);
 
             &.nuxt-link-exact-active {
                 cursor: default;
-                &:link {
-                    color: #000;
-                }
+                @include link-color(#000);
+            }
 
-                &:visited {
-                    color: #000;
-                }
-
-                &:hover {
-                    color: #000;
-                }
-
-                &:active {
-                    color: #000;
-                }
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                margin-left: 0;
+                font-size: 32px;
+                font-weight: 700;
             }
         }
         &__posts-icon {
             width: 20px;
             height: 20px;
             margin-right: 8px;
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                display: none;
+            }
         }
 
     }
@@ -94,6 +91,14 @@
         line-height: 24px;
         font-weight: 700;
         transition: color 200ms linear;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            display: none;
+        }
 
         &__icon {
             width: 60px;

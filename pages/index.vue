@@ -1,6 +1,5 @@
 <template>
     <div class="l-container">
-
         <div v-if="articlesListLength && !isDataLoading"
              class="articles-list"
         >
@@ -79,10 +78,15 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 23px;
-}
 
-.test-icon {
-    fill: red;
-    color: red;
+    @include media-breakpoint-down(lg) {
+        grid-gap: 16px;
+    }
+    @include media-breakpoint-down(md) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @include media-breakpoint-down(sm) {
+        grid-template-columns: 1fr;
+    }
 }
 </style>

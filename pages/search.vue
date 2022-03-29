@@ -45,6 +45,15 @@
             color: #aaaaaa;
             font-size: 14px;
             margin-bottom: 55px;
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                margin-bottom: 20px;
+            }
+            @include media-breakpoint-down(xs) {
+            }
         }
     }
     mark {

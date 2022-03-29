@@ -124,7 +124,6 @@ export default {
 </script>
 
 <style lang="scss">
-$purple: #FF008A;
 .article-view {
     &__banner {
         margin-bottom: 40px;

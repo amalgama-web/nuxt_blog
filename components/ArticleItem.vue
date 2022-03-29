@@ -63,12 +63,28 @@ export default {
 </script>
 
 <style lang="scss">
-$purple: #FF008A;
 .article-item {
     position: relative;
     border: 1px solid #E2E2E2;
     border-radius: 20px;
     padding-bottom: 40px;
+
+    @include media-breakpoint-down(lg) {
+    }
+    @include media-breakpoint-down(md) {
+    }
+    @include media-breakpoint-down(sm) {
+        border: none;
+        border-bottom: 1px solid #e2e2e2;
+        border-radius: 0;
+        padding-bottom: 16px;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    @include media-breakpoint-down(xs) {
+        padding-bottom: 60px;
+    }
 
     &__inner {
         display: block;
@@ -81,12 +97,36 @@ $purple: #FF008A;
                 transition: color 200ms linear;
             }
         }
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            padding: 0;
+        }
+        @include media-breakpoint-down(xs) {
+        }
     }
 
     &__image-container {
         display: block;
         position: relative;
         margin-bottom: 16px;
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            float: right;
+            width: 50%;
+            margin: 0 0 0 16px;
+        }
+        @include media-breakpoint-down(xs) {
+            float: none;
+            width: 100%;
+            margin: 0 0 16px;
+        }
     }
 
     &__image-outer {
@@ -123,11 +163,24 @@ $purple: #FF008A;
         line-height: 22px;
         color: rgba(60, 60, 67, 0.6);
 
+        $lines: 2;
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: $lines;
         -webkit-box-orient: vertical;
-        max-height: 44px;
+        max-height: 22px * $lines;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            $lines: 3;
+            -webkit-line-clamp: $lines;
+            max-height: 22px * $lines;
+        }
+        @include media-breakpoint-down(xs) {
+        }
     }
 
     &__footer {
@@ -137,6 +190,15 @@ $purple: #FF008A;
         padding: 16px;
         display: flex;
         align-items: center;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 
     &__footer-item {

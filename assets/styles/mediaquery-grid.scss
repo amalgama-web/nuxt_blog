@@ -1,0 +1,39 @@
+$grid-breakpoints: (
+        xxs: 0,
+        xs: 360px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+) !default;
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+    $max: map-get($breakpoints, $name);
+    @return if($max and $max > 0, $max - .02, null);
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+    $max: breakpoint-max($name, $breakpoints);
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+
+@include media-breakpoint-down(xxl) {
+}
+@include media-breakpoint-down(xl) {
+}
+@include media-breakpoint-down(lg) {
+}
+@include media-breakpoint-down(md) {
+}
+@include media-breakpoint-down(sm) {
+}
+@include media-breakpoint-down(xs) {
+}
