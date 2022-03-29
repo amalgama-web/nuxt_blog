@@ -1,17 +1,16 @@
 <template>
     <div class="l-container">
 
-
-
         <div v-if="articlesListLength && !isDataLoading"
              class="articles-list"
         >
             <article-item v-for="article in articlesList"
                           :key="article.id"
                           :article="article"
-            >
-            </article-item>
+            ></article-item>
+
         </div>
+
         <div v-else class="preloader-blank"></div>
 
         <the-pagination v-if="totalPages > 1"

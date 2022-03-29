@@ -1,7 +1,7 @@
 <template>
     <div class="article-item">
-        <div class="article-item__inner"
-             @click="openArticle(article.id)"
+        <nuxt-link class="article-item__inner"
+             :to="`/post/${article.id}`"
              :title="article.title | capitalFirstLetter"
         >
             <div class="article-item__image-container">
@@ -17,7 +17,7 @@
             <div class="article-item__preview">
                 {{ article.body | capitalFirstLetter }}
             </div>
-        </div>
+        </nuxt-link>
 
         <div class="article-item__footer">
             <div class="article-item__footer-item">
@@ -39,11 +39,10 @@
 
 <script>
 export default {
-    name: 'ArticleItem',
-
     props: [
         'article'
     ],
+
     data() {
         return {}
     },
@@ -55,16 +54,10 @@ export default {
     },
 
     methods: {
-        openArticle(articleId) {
-            this.$router.push({name: 'post-id', params: {id: articleId}});
-        },
-
         editArticle(articleId) {
             this.$router.push({name: 'post-id', params: {id: articleId, isEditMode: true}});
         }
     }
-
-
 }
 
 </script>
@@ -78,6 +71,7 @@ $purple: #FF008A;
     padding-bottom: 40px;
 
     &__inner {
+        display: block;
         padding: 16px;
         cursor: pointer;
 
