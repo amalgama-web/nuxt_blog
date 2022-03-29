@@ -1,13 +1,11 @@
 <template>
     <div class="l-container">
-
-        Страница пост без id
+        Страница поиска
     </div>
 </template>
 
 <script>
     export default {
-        // todo redirect to /
         data() {
             return {
                 isDataLoading: false,
@@ -28,8 +26,5 @@
 </script>
 
 <style lang="scss">
-    .post-view {
-
-    }
 
 </style>

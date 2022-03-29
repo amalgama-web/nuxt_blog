@@ -1,7 +1,13 @@
 <template>
     <header>
-        <div class="l-container">
+        <div class="l-container header">
             <nuxt-link to="/" class="logo">Logo</nuxt-link>
+            <div class="header__right">
+
+                <search-row></search-row>
+
+                <nuxt-link to="/">Посты</nuxt-link>
+            </div>
         </div>
     </header>
 </template>
@@ -14,9 +20,15 @@
 
 <style lang="scss">
     .header {
-        height: 60px;
+        height: 100px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        &__right {
+            display: flex;
+            align-items: center;
+        }
+
     }
     .logo {
         font-size: 20px;

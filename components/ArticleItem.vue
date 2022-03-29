@@ -3,6 +3,7 @@
          @click="openArticle(article.id)"
          :title="article.title | capitalFirstLetter"
     >
+<!--         todo удалить тестовый вывод id статьи -->
         <div style="color: red;">{{article.id}}</div>
         <div class="article-item__image-container">
             <div class="article-item__image-outer">
@@ -42,12 +43,10 @@
 
         methods: {
             openArticle(articleId) {
-                console.log('open article');
                 this.$router.push({name: 'post-id', params: { id: articleId } });
             },
 
             editArticle(articleId) {
-                console.log('edit article');
                 this.$router.push({name: 'post-id', params: { id: articleId, isEditMode: true } });
             }
         }

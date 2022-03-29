@@ -5,9 +5,6 @@ export default {
             articlesList: [],
             totalPages: 1,
             currentPage: 1,
-
-            currentArticle: null,
-            currentComments: null
         }
     },
 
@@ -28,37 +25,11 @@ export default {
             return state.currentPage;
         },
 
-        currentArticle(state) {
-            return state.currentArticle;
-        },
-
-        currentComments(state) {
-            return state.currentComments;
-        },
-
-        currentCommentsLength(state) {
-            return state.currentComments ? state.currentComments.length : 0;
-        },
-
     },
 
     mutations: {
         setArticlesList(state, payload) {
             state.articlesList = payload;
-        },
-
-        setArticle(state, payload) {
-            state.currentArticle = payload;
-        },
-
-        setComments(state, payload) {
-            state.currentComments = payload;
-        },
-
-        updateArticleText(state, payload) {
-            if(state.currentArticle || state.currentArticle.body) {
-                state.currentArticle.body = payload;
-            }
         },
 
         setTotalPages(state, payload) {
@@ -73,16 +44,6 @@ export default {
     actions: {
         setArticlesList(context, payload) {
             context.commit('setArticlesList', payload);
-        },
-        setArticle(context, payload) {
-            context.commit('setArticle', payload);
-        },
-        setComments(context, payload) {
-            context.commit('setComments', payload);
-        },
-
-        updateArticleText(context, payload) {
-            context.commit('updateArticleText', payload);
         },
 
         setTotalPages(context, payload) {

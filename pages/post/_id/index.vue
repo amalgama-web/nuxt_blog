@@ -52,7 +52,7 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import { mapGetters } from 'vuex';
 
     export default {
         data() {
@@ -66,7 +66,11 @@
         },
 
         computed: {
-            ...mapGetters(['currentArticle', 'currentComments', 'currentCommentsLength']),
+            ...mapGetters({
+                currentArticle: 'article/currentArticle',
+                currentComments: 'article/currentComments',
+                currentCommentsLength: 'article/currentCommentsLength'
+            }),
         },
 
         methods: {
@@ -83,7 +87,7 @@
                     body: newText
                 })
                     .then(() => {
-                        this.$store.dispatch('updateArticleText', newText);
+                        this.$store.dispatch('article/updateArticleText', newText);
                         this.isArticleUpdating = false;
                         this.toggleForm();
                     })
@@ -99,14 +103,14 @@
 
             this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`)
                 .then(response => {
-                    this.$store.dispatch('setArticle', response.data);
+                    this.$store.dispatch('article/setArticle', response.data);
                     this.isArticleDataLoading = false;
 
                     // получаем комменты только после статьи, т.к. если будет ошибка в загрузке статьи комментарии не нужны
                     return this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}/comments`);
                 })
                 .then(response => {
-                    this.$store.dispatch('setComments', response.data);
+                    this.$store.dispatch('article/setComments', response.data);
                     this.isCommentsDataLoading = false;
                 })
                 .catch(e => {
