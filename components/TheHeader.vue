@@ -49,6 +49,10 @@
 
             margin-left: 30px;
 
+            font-size: 14px;
+            line-height: 1;
+            font-weight: 500;
+
             @include transited();
             @include link-color($purple, #000);
 
@@ -64,6 +68,7 @@
             @include media-breakpoint-down(sm) {
                 margin-left: 0;
                 font-size: 32px;
+                line-height: 1.5;
                 font-weight: 700;
             }
         }

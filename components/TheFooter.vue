@@ -17,6 +17,9 @@
         border-top: 1px solid #E8E8E8;
     }
     .footer {
+        display: flex;
+        align-items: center;
+
         height: 79px;
         max-width: 1014px;
         margin-left: auto;
@@ -24,8 +27,8 @@
         padding-left: 20px;
         padding-right: 20px;
 
-        display: flex;
-        align-items: center;
+        font-size: 16px;
+        line-height: 19px;
     }
 
 </style>

@@ -1,0 +1,42 @@
+// layout with footer sticked to bottom
+
+#__nuxt,
+#__layout {
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+
+    &__inner {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+    }
+}
+
+$footerHeight: 80px;
+.l-prefooter {
+    padding-bottom: $footerHeight;
+    margin-top: 50px;
+}
+
+.l-footer {
+    margin-top: -$footerHeight;
+    height: $footerHeight;
+}
+
+// main container, it sets width and side paddings
+.l-container {
+    max-width: 1014px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    @include media-breakpoint-down(lg) {
+    }
+    @include media-breakpoint-down(md) {
+    }
+    @include media-breakpoint-down(sm) {
+        padding: 0 16px;
+    }
+}

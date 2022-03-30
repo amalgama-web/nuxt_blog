@@ -19,7 +19,9 @@ export default {
     ssr: false,
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
-        '~/assets/styles/main.scss'
+        '~/assets/styles/main.scss',
+        '~/assets/styles/reset.scss',
+        '~/assets/styles/layout.scss'
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -32,13 +34,15 @@ export default {
     components: true,
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: [],
+    buildModules: [
+    ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
-        '@nuxtjs/style-resources'
+        '@nuxtjs/style-resources',
+        '@nuxtjs/google-fonts'
     ],
 
     styleResources: {
@@ -56,5 +60,13 @@ export default {
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+
+    googleFonts: {
+        families: {
+            Manrope: {
+                wght: [300, 400, 500, 600, 700]
+            },
+        }
+    }
 }

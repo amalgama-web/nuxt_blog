@@ -14,7 +14,7 @@
                 {{ article.title | capitalFirstLetter }}
             </div>
 
-            <div class="article-item__preview">
+            <div class="article-item__preview _crop">
                 {{ article.body | capitalFirstLetter }}
             </div>
         </nuxt-link>
@@ -146,7 +146,7 @@ export default {
     &__head {
         font-size: 24px;
         line-height: 28px;
-        font-weight: bold;
+        font-weight: 700;
 
         margin-bottom: 10px;
 
@@ -159,29 +159,34 @@ export default {
     }
 
     &__preview {
+
         font-size: 17px;
         line-height: 22px;
         color: rgba(60, 60, 67, 0.6);
 
-        $lines: 2;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: $lines;
-        -webkit-box-orient: vertical;
-        max-height: 22px * $lines;
-
-        @include media-breakpoint-down(lg) {
-        }
-        @include media-breakpoint-down(md) {
-        }
-        @include media-breakpoint-down(sm) {
-            $lines: 3;
+        &._crop {
+            $lines: 2;
+            overflow: hidden;
+            display: -webkit-box;
             -webkit-line-clamp: $lines;
+            -webkit-box-orient: vertical;
             max-height: 22px * $lines;
-        }
-        @include media-breakpoint-down(xs) {
+
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                $lines: 3;
+                -webkit-line-clamp: $lines;
+                max-height: 22px * $lines;
+            }
+            @include media-breakpoint-down(xs) {
+            }
         }
     }
+
+
 
     &__footer {
         position: absolute;

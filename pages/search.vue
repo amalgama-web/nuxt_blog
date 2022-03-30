@@ -52,7 +52,7 @@
             @include media-breakpoint-down(md) {
             }
             @include media-breakpoint-down(sm) {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
             }
             @include media-breakpoint-down(xs) {
             }

@@ -150,7 +150,7 @@ export default {
 
     &__head {
         font-size: 34px;
-        line-height: 46.44px;
+        line-height: 46px;
         font-weight: 700;
 
         padding-bottom: 33px;
@@ -184,6 +184,7 @@ export default {
         align-items: center;
         color: $purple;
         font-size: 14px;
+        font-weight: 500;
         cursor: pointer;
 
         background-color: #fff;
@@ -207,6 +208,7 @@ export default {
     &__head {
         font-size: 24px;
         line-height: 1.166;
+        font-weight: 500;
         margin-bottom: 30px;
         @include media-breakpoint-down(lg) {
         }

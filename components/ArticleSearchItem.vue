@@ -36,6 +36,7 @@
         @include media-breakpoint-down(sm) {
             padding-left: 0;
             padding-right: 0;
+            margin-bottom: 0;
         }
 
         &:hover {

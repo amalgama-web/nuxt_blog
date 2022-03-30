@@ -1,63 +1,11 @@
-* {
-    box-sizing: border-box;
-
-    &:before,
-    &:after {
-        box-sizing: border-box;
-    }
-}
-
-body,
-html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#__nuxt,
-#__layout {
-    height: 100%;
-}
-
-.wrapper {
-    height: 100%;
-
-    &__inner {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-    }
-}
-
-$footerHeight: 80px;
-.l-prefooter {
-    padding-bottom: $footerHeight;
-    margin-top: 50px;
-}
-
-// sticky footer
-.l-footer {
-    margin-top: -$footerHeight;
-    height: $footerHeight;
-}
-
 body {
     background-color: #FAFAFA;
     font-size: 16px;
     line-height: 1.6;
 
-    font-family: Verdana, sans-serif;
+    font-family: 'Manrope', sans-serif;
     color: #000;
-}
-
-ul, ol {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-h1, h2, h3, h4 {
-    margin-top: 0;
+    font-weight: 400;
 }
 
 a,
@@ -66,20 +14,6 @@ a,
     cursor: pointer;
 
     @include link-color(#000, $purple);
-}
-
-.l-container {
-    max-width: 1014px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 20px;
-    @include media-breakpoint-down(lg) {
-    }
-    @include media-breakpoint-down(md) {
-    }
-    @include media-breakpoint-down(sm) {
-        padding: 0 16px;
-    }
 }
 
 .button {
@@ -146,7 +80,6 @@ picture {
     }
 }
 
-
 .preloader-blank {
     display: flex;
     min-height: 400px;
@@ -156,23 +89,6 @@ picture {
     margin: 0 auto;
     background: url('~/assets/img/preloader.svg') no-repeat center center;
     background-size: 60px 15px;
-}
-
-.preloader {
-    display: block;
-    width: 60px;
-    height: 15px;
-    background: url('~/assets/img/preloader.svg') no-repeat center bottom;
-    background-size: contain;
-
-    &._sm {
-        width: 30px;
-        height: 10px;
-    }
-
-    &._inline {
-        display: inline-block;
-    }
 }
 
 ._preloading {

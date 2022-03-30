@@ -77,8 +77,9 @@
         &__name {
             font-size: 18px;
             line-height: 24px;
-            margin-bottom: 5px;
             font-weight: 600;
+
+            margin-bottom: 5px;
         }
         &__text {
             font-size: 18px;
