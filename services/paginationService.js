@@ -11,11 +11,12 @@ export default {
         // if only 1 page response.headers.link is empty string
         if(parsedStr === '') return 1;
 
-        const totalPagesStr = parsedStr.split(',')
-            .find(linkItem => linkItem.includes('rel="last"'))
-            // find digits after ?_page= or &_page= and before & or >
-            .match(/(?<=[&?]_page=)[\d]+(?=[&>])/g)[0];
+        // find digits after ?_page= or &_page= and before & or >
+        const pagesNumbers = parsedStr
+            .match(/(?<=[&?]_page=)[\d]+(?=[&>])/g)
+            .map(item => +item);
 
-        return +totalPagesStr;
+        // return max number - it is last page number
+        return Math.max(...pagesNumbers);
     }
 }
