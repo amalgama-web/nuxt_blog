@@ -1,6 +1,5 @@
 export default {
     state() {
-        // todo разделить на модули??
         return {
             articlesList: [],
             totalPages: 1,
@@ -36,7 +35,7 @@ export default {
             state.totalPages = payload;
         },
 
-        setCurrentPage(state, payload) {
+        setCurrentNumber(state, payload) {
             state.currentPage = payload;
         },
     },
@@ -50,8 +49,8 @@ export default {
             context.commit('setTotalPages', payload);
         },
 
-        setCurrentPage(context, payload) {
-            context.commit('setCurrentPage', payload);
+        setCurrentNumber(context, payload) {
+            context.commit('setCurrentNumber', payload);
         },
     },
 }

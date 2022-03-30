@@ -1,21 +1,23 @@
 <template>
-    <div class="l-container">
-        <div v-if="articlesListLength && !isDataLoading"
-             class="articles-list"
-        >
+    <div v-if="isDataLoading" class="preloader-blank"></div>
+
+    <div v-else-if="isError" class="l-container error-blank">
+        Произошла ошибка при загрузке статей
+    </div>
+
+    <div v-else class="l-container">
+
+        <div class="articles-list">
             <article-item v-for="article in articlesList"
                           :key="article.id"
                           :article="article"
             ></article-item>
-
         </div>
-
-        <div v-else class="preloader-blank"></div>
 
         <the-pagination v-if="totalPages > 1"
                         :total-pages="totalPages"
                         :current-page="currentPage"
-                        @change="changePaginationPage"
+                        @change="paginationChange"
         ></the-pagination>
 
     </div>
@@ -23,17 +25,35 @@
 
 
 <script>
-import { mapGetters } from 'vuex';
+import {mapGetters} from 'vuex';
 import paginationService from "~/services/paginationService";
 
 export default {
+    fetch() {
+        console.log('fetch');
+        console.log(this.articlesListLength);
+        if (this.articlesListLength) return;
+        console.log('fetch after check');
+
+        this.$store.dispatch('setCurrentNumber', 1);
+
+        return this.loadArticlesByPage(1);
+    },
+
     data() {
         return {
-            isDataLoading: false,
+            isPaginateLoading: false,
+            isPaginationError: false,
         }
     },
 
     computed: {
+        isDataLoading() {
+            return this.$fetchState.pending || this.isPaginateLoading;
+        },
+        isError() {
+            return this.$fetchState.error || this.isPaginationError;
+        },
         ...mapGetters([
             'articlesList',
             'articlesListLength',
@@ -43,32 +63,29 @@ export default {
     },
 
     methods: {
-        changePaginationPage(newIndex) {
-            this.loadArticlesByPage(newIndex);
+
+        paginationChange(pageNumber) {
+            this.$store.dispatch('setCurrentNumber', pageNumber);
+            this.isPaginateLoading = true;
+
+            this.loadArticlesByPage(pageNumber)
+                .catch(e => {
+                    this.isPaginationError = true;
+                    console.log('Ошибка загрузки статей', e);
+                })
+                .finally(() => {
+                    this.isPaginateLoading = false;
+                });
         },
 
         loadArticlesByPage(pageNumber) {
-            this.$store.dispatch('setCurrentPage', pageNumber);
-            this.isDataLoading = true;
-
-            this.$axios.get(`https://jsonplaceholder.typicode.com/posts?_embed=comments&_page=${pageNumber}&_limit=9`)
+            return this.$axios.get(`https://jsonplaceholder.typicode.com/posts?_embed=comments&_page=${pageNumber}&_limit=9`)
                 .then(response => {
                     const totalPages = paginationService.getTotalPages(response.headers['link']);
                     this.$store.dispatch('setArticlesList', response.data);
                     this.$store.dispatch('setTotalPages', totalPages);
                 })
-                .catch(e => {
-                    console.log('Ошибка загрузки статей', e);
-                })
-                .finally(() => {
-                    this.isDataLoading = false;
-                });
         }
-    },
-
-    mounted() {
-        if (this.articlesListLength) return;
-        this.loadArticlesByPage(1);
     }
 }
 </script>
