@@ -30,10 +30,7 @@ import paginationService from "~/services/paginationService";
 
 export default {
     fetch() {
-        console.log('fetch');
-        console.log(this.articlesListLength);
         if (this.articlesListLength) return;
-        console.log('fetch after check');
 
         this.$store.dispatch('setCurrentNumber', 1);
 

@@ -1,7 +1,7 @@
 export default {
 
     // find total pages value from response.headers.link
-    /* example
+    /* response example
       <http://jsonplaceholder.typicode.com/posts?_embed=comments&_page=1&_limit=9>; rel="first",
       <http://jsonplaceholder.typicode.com/posts?_embed=comments&_page=2&_limit=9>; rel="next",
       <http://jsonplaceholder.typicode.com/posts?_embed=comments&_page=12&_limit=9>; rel="last"
