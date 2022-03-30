@@ -189,7 +189,7 @@ export default {
         background-color: #fff;
         border: none;
         outline: none;
-        transition: color 200ms linear;
+        @include transited();
         &:hover {
             color: #000;
         }

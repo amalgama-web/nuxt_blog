@@ -151,7 +151,7 @@
             font-weight: 700;
 
             cursor: pointer;
-            transition: all 200ms linear;
+            @include transited();
 
             &:hover {
                 border-color: #FF008A;

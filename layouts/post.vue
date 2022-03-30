@@ -1,7 +1,6 @@
 <template>
     <div class="wrapper">
         <div class="wrapper__inner">
-            <mediaquery-indicator></mediaquery-indicator>
             <the-header class="post-header-lg"></the-header>
             <post-header class="post-header-sm"></post-header>
 

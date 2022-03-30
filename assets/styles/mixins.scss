@@ -9,7 +9,30 @@
     &:hover {
         color: $hover-color;
     }
-    &:visited {
+    &:active {
         color: $color;
     }
+}
+
+@mixin placehodlerColor($color) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+
+    &:-moz-placeholder {
+        color: $color;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin transited() {
+    transition: all 200ms linear;
 }

@@ -35,6 +35,7 @@ $footerHeight: 80px;
     margin-top: 50px;
 }
 
+// sticky footer
 .l-footer {
     margin-top: -$footerHeight;
     height: $footerHeight;
@@ -97,7 +98,8 @@ a,
     line-height: 22px;
     font-weight: 300;
 
-    transition: all linear 200ms;
+    @include transited();
+
     cursor: pointer;
 
     background-color: $purple;
@@ -132,9 +134,11 @@ a,
     max-width: 100%;
     height: auto;
 }
+
 picture {
     display: block;
     max-width: 100%;
+
     img {
         display: block;
         max-width: 100%;

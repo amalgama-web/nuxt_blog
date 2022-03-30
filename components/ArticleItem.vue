@@ -94,7 +94,7 @@ export default {
         &:hover {
             .article-item__head {
                 color: $purple;
-                transition: color 200ms linear;
+                @include transited();
             }
         }
 
@@ -155,7 +155,7 @@ export default {
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         max-height: 56px;
-        transition: color 200ms linear;
+        @include transited();
     }
 
     &__preview {
@@ -207,7 +207,7 @@ export default {
         margin-right: 25px;
 
         color: #000;
-        transition: color 200ms linear;
+        @include transited();
 
         &:last-child {
             margin-right: 0;

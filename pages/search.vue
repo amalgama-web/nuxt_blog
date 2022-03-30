@@ -6,20 +6,22 @@
             Совпадения в комментариях не учитываются
         </p>
 
-        <div v-highlight-text="searchStr">
+        <text-highlight :highlight="searchStr">
             <article-search-item v-for="article in searchResult"
                                  :key="article.id"
                                  :article="article"
             >
             </article-search-item>
-        </div>
+        </text-highlight>
     </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex';
+    import TextHighlight from "@/components/TextHighlight";
 
     export default {
+        components: {TextHighlight},
         data() {
             return {
                 isDataLoading: false,
@@ -55,9 +57,5 @@
             @include media-breakpoint-down(xs) {
             }
         }
-    }
-    mark {
-        background-color: #FF008A;
-        color: #fff;
     }
 </style>

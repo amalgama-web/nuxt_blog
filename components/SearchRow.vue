@@ -163,26 +163,8 @@
             font-size: 17px;
             color: #000;
 
-            transition: all 200ms linear;
-
-            $placeColor: rgba(60, 60, 67, 0.6);
-
-            &::-webkit-input-placeholder {
-                color: $placeColor;
-            }
-
-            &:-moz-placeholder {
-                color: $placeColor;
-            }
-
-            &::-moz-placeholder {
-                color: $placeColor;
-                opacity: 1;
-            }
-
-            &:-ms-input-placeholder {
-                color: $placeColor;
-            }
+            @include transited();
+            @include placehodlerColor(rgba(60, 60, 67, 0.6));
 
             &:focus {
                 border-color: #FF008A;
@@ -210,7 +192,7 @@
             width: 19px;
             height: 19px;
             color: rgba(60, 60, 67, 0.6);
-            transition: color 200ms linear;
+            @include transited();
         }
 
         &__dropdown {

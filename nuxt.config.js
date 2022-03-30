@@ -26,7 +26,6 @@ export default {
     plugins: [
         '~/plugins/filters.js',
         '~/plugins/directives/click-outside.js',
-        '~/plugins/directives/highlight-text.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

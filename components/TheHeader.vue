@@ -49,7 +49,7 @@
 
             margin-left: 30px;
 
-            transition: all 200ms linear;
+            @include transited();
             @include link-color($purple, #000);
 
             &.nuxt-link-exact-active {
@@ -85,7 +85,9 @@
         font-size: 20px;
         line-height: 24px;
         font-weight: 700;
-        transition: color 200ms linear;
+        @include transited();
+
+        @include link-color(#000, $purple);
 
         @include media-breakpoint-down(lg) {
         }

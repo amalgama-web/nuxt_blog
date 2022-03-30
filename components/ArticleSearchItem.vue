@@ -41,7 +41,7 @@
         &:hover {
             .article-item__head {
                 color: $purple;
-                transition: color 200ms linear;
+                @include transited();
             }
         }
     }
