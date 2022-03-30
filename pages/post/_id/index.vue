@@ -1,7 +1,14 @@
 <template>
-    <div class="l-container">
 
-        <div v-if="currentArticle && !isArticleDataLoading" class="article-view">
+    <div v-if="$fetchState.pending" class="preloader-blank"></div>
+
+    <div v-else-if="$fetchState.error" class="l-container error-blank">
+        Произошла ошибка при загрузке статьи
+    </div>
+
+    <div v-else class="l-container">
+
+        <div class="article-view">
 
             <div class="article-view__banner">
                 <picture>
@@ -38,22 +45,16 @@
 
         </div>
 
-        <div v-else class="preloader-blank"></div>
-
         <div class="article-comments">
             <div class="article-comments__head">
                 Комментарии {{ currentCommentsLength }}
             </div>
-
-            <div v-if="currentComments && !isCommentsDataLoading">
-                <comment-item v-for="comment in currentComments"
-                              :comment="comment"
-                              :key="comment.id"
-                ></comment-item>
-            </div>
-            <div v-else class="preloader-blank"></div>
+            <comment-item v-for="comment in currentComments"
+                          :comment="comment"
+                          :key="comment.id"
+            >
+            </comment-item>
         </div>
-
     </div>
 </template>
 
@@ -63,12 +64,20 @@ import {mapGetters} from 'vuex';
 export default {
     layout: 'post',
 
+    fetch() {
+        const articlePromise = this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`);
+        const commentsPromise = this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}/comments`);
+
+        return Promise.all([articlePromise, commentsPromise])
+            .then(([articleResponse, commentsResponse]) => {
+                this.$store.dispatch('article/setArticle', articleResponse.data);
+                this.$store.dispatch('article/setComments', commentsResponse.data);
+            });
+    },
+
     data() {
         return {
-            isArticleDataLoading: true,
-            isCommentsDataLoading: true,
             isArticleUpdating: false,
-
             isEditFormVisible: false
         }
     },
@@ -108,22 +117,6 @@ export default {
 
     mounted() {
         if (this.$route.params.isEditMode) this.isEditFormVisible = true;
-
-        this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`)
-            .then(response => {
-                this.$store.dispatch('article/setArticle', response.data);
-                this.isArticleDataLoading = false;
-
-                // получаем комменты только после статьи, т.к. если будет ошибка в загрузке статьи комментарии не нужны
-                return this.$axios.get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}/comments`);
-            })
-            .then(response => {
-                this.$store.dispatch('article/setComments', response.data);
-                this.isCommentsDataLoading = false;
-            })
-            .catch(e => {
-                console.log('Ошибка загрузки данных статьи', e);
-            })
     }
 }
 </script>
@@ -132,6 +125,7 @@ export default {
 .article-view {
     &__banner {
         margin-bottom: 40px;
+
         img {
             margin: 0 auto;
         }
@@ -192,10 +186,12 @@ export default {
         border: none;
         outline: none;
         @include transited();
+
         &:hover {
             color: #000;
         }
     }
+
     &__edit-icon {
         width: 20px;
         height: 20px;
