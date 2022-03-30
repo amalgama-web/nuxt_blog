@@ -106,10 +106,33 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 40px;
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            justify-content: center;
+        }
+        @include media-breakpoint-down(xs) {
+        }
     }
 
     .pagination {
+        position: relative;
         display: flex;
+        flex-wrap: wrap;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            justify-content: center;
+            padding-left: 36px;
+            padding-right: 36px;
+        }
+        @include media-breakpoint-down(xs) {
+        }
 
         &__item {
             display: flex;
@@ -132,6 +155,29 @@
 
             &:hover {
                 border-color: #FF008A;
+            }
+
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                margin: 4px;
+                &._prev,
+                &._next {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    margin: 0;
+                }
+                &._prev {
+                    left: 0;
+                }
+                &._next {
+                    right: 0;
+                }
+            }
+            @include media-breakpoint-down(xs) {
             }
 
             &._static {

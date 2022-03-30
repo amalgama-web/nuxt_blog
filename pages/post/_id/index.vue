@@ -4,7 +4,10 @@
         <div v-if="currentArticle && !isArticleDataLoading" class="article-view">
 
             <div class="article-view__banner">
-                <img class="response-img" src="~/assets/img/banner.jpg" alt="">
+                <picture>
+                    <source srcset="~/assets/img/banner-mobile.jpg" media="(max-width: 575px)">
+                    <img srcset="~/assets/img/banner.jpg" :alt="currentArticle.title">
+                </picture>
             </div>
 
             <div class="article-view__head">
@@ -58,6 +61,8 @@
 import {mapGetters} from 'vuex';
 
 export default {
+    layout: 'post',
+
     data() {
         return {
             isArticleDataLoading: true,
@@ -127,15 +132,44 @@ export default {
 .article-view {
     &__banner {
         margin-bottom: 40px;
+        img {
+            margin: 0 auto;
+        }
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            margin-left: -16px;
+            margin-right: -16px;
+        }
+        @include media-breakpoint-down(xs) {
+        }
     }
 
     &__head {
         font-size: 34px;
         line-height: 46.44px;
+        font-weight: 700;
 
-        padding-bottom: 40px;
-        margin-bottom: 50px;
+        padding-bottom: 33px;
+        margin-bottom: 36px;
         border-bottom: 1px solid #D1D1D6;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            padding-bottom: 25px;
+            margin-bottom: 23px;
+
+            font-size: 32px;
+            line-height: 36px;
+        }
+        @include media-breakpoint-down(xs) {
+        }
     }
 
     &__text {
@@ -172,8 +206,17 @@ export default {
 
     &__head {
         font-size: 24px;
-        line-height: 33px;
+        line-height: 1.166;
         margin-bottom: 30px;
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            font-size: 20px;
+        }
+        @include media-breakpoint-down(xs) {
+        }
     }
 }
 </style>

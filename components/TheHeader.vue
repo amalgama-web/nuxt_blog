@@ -21,18 +21,13 @@
     </header>
 </template>
 
-<script>
-    export default {
-        name: 'TheHeader'
-    }
-</script>
-
 <style lang="scss">
     .header {
         height: 100px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 20px;
         &__right {
             display: flex;
             align-items: center;

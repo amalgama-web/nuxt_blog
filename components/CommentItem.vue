@@ -45,6 +45,17 @@
         &:last-child {
             margin-bottom: 0;
         }
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+        }
+        @include media-breakpoint-down(sm) {
+            padding-left: 48px;
+        }
+        @include media-breakpoint-down(xs) {
+        }
+
         &__photo {
             position: absolute;
             top: 0;
@@ -53,6 +64,15 @@
             height: 36px;
             background-color: #000;
             border-radius: 50%;
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+            }
+            @include media-breakpoint-down(sm) {
+                left: 0;
+            }
+            @include media-breakpoint-down(xs) {
+            }
         }
         &__name {
             font-size: 18px;

@@ -51,6 +51,17 @@
 <style lang="scss">
     .form-edit-text {
         position: relative;
+
+        @include media-breakpoint-down(lg) {
+        }
+        @include media-breakpoint-down(md) {
+            text-align: center;
+        }
+        @include media-breakpoint-down(sm) {
+        }
+        @include media-breakpoint-down(xs) {
+        }
+
         &__field {
             display: block;
             width: 100%;
@@ -75,6 +86,20 @@
         &__button {
             width: 320px;
             margin-right: 25px;
+            @include media-breakpoint-down(lg) {
+            }
+            @include media-breakpoint-down(md) {
+                display: flex;
+                margin: 0 auto 20px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            @include media-breakpoint-down(sm) {
+                max-width: 100%;
+            }
+            @include media-breakpoint-down(xs) {
+            }
         }
     }
 

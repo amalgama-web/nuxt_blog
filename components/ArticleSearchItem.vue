@@ -1,14 +1,12 @@
 <template>
-    <div class="article-item article-item_search"
-         @click="openArticle(article.id)"
-    >
+    <nuxt-link :to="`/post/${article.id}`" class="article-item article-item_search">
         <div class="article-item__head">
             {{ article.title | capitalFirstLetter }}
         </div>
-        <div class="article-item__text">
+        <div class="article-item__preview">
             {{ article.body | capitalFirstLetter }}
         </div>
-    </div>
+    </nuxt-link>
 </template>
 
 <script>
@@ -16,7 +14,6 @@
         props: [
             'article'
         ],
-
         methods: {
             openArticle(articleId) {
                 this.$router.push({name: 'post-id', params: { id: articleId } });
@@ -28,6 +25,7 @@
 
 <style lang="scss">
     .article-item_search {
+        display: block;
         margin-bottom: 20px;
         padding: 16px;
 
@@ -38,6 +36,13 @@
         @include media-breakpoint-down(sm) {
             padding-left: 0;
             padding-right: 0;
+        }
+
+        &:hover {
+            .article-item__head {
+                color: $purple;
+                transition: color 200ms linear;
+            }
         }
     }
 </style>
