@@ -143,6 +143,7 @@ export default {
         @include media-breakpoint-down(sm) {
             margin-left: -16px;
             margin-right: -16px;
+            margin-bottom: 20px;
         }
         @include media-breakpoint-down(xs) {
         }

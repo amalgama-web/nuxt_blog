@@ -23,7 +23,7 @@
 
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
 import paginationService from "~/services/paginationService";
 
 export default {

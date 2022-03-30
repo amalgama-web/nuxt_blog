@@ -1,35 +1,10 @@
 <template>
-    <div class="l-container">
-
-        Страница пост без id
-    </div>
+    <div></div>
 </template>
-
 <script>
     export default {
-        // todo redirect to /
-        data() {
-            return {
-                isDataLoading: false,
-            }
-        },
-
-        computed: {
-        },
-
-        methods: {
-
-        },
-
-        mounted() {
-
+        middleware({ redirect }) {
+            return redirect('/');
         }
     }
 </script>
-
-<style lang="scss">
-    .post-view {
-
-    }
-
-</style>
